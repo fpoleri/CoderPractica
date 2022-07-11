@@ -1,5 +1,5 @@
 let nombre = prompt("Ingresar nombre");
-let apellido = prompt("Ingresar apellido")
+let apellido = prompt("Ingresar apellido");
 
 
 
@@ -32,4 +32,5 @@ while(nombre == "" || apellido == ""){
         alert("No eres mayor edad, pero intentalo de nuevo ;)");
     }
 
-    
+    let harina = 500;
+    let 

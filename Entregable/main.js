@@ -24,21 +24,30 @@ function borrarDelCarrito(idProducto){
     carrito.splice(index,1);
     console.log(carrito);
 }
+function ingresarProduto(){
+   return new Producto( parseInt(prompt("ingrese el id")),
+    prompt("ingrese el nombre del producto"),
+    prompt("ingrese la descripion"),
+    prompt("ingrese el precio"))
+}
 
 
-    const producto1 = agregarCarrito(new Producto(1,"harina de Trigo","Integral",97));
-    agregarCarrito(new Producto(2,"harina de Centeno","Integral",169));
-    agregarCarrito(new Producto(3,"harina de Trigo blanca","blanca/tipo 000",114));
-    agregarCarrito(new Producto(4,"harina de Soja","no OGM",132));
-    agregarCarrito(new Producto(5,"Salvado entero","Salvado grueso",46));
-    agregarCarrito(new Producto(6,"Salvado","Salvado Fino",52));
+agregarCarrito(new Producto(1,"harina de Centeno","Integral",169));
+agregarCarrito(new Producto(2,"harina de Trigo blanca","blanca/tipo 000",114));
+agregarCarrito(new Producto(3,"harina de Soja","no OGM",132));
+agregarCarrito(new Producto(4,"Salvado entero","Salvado grueso",46));
+agregarCarrito(new Producto(5,"Salvado","Salvado Fino",52));
+let respuesta = prompt("Queres agregar un nuevo producto(si/no)?")
+
+while(respuesta === "si"){
+    agregarCarrito((ingresarProduto()));
+    respuesta = prompt("Queres agregar otro producto(si/no)?")
+}
 
 let acumulador = "";
-
-
 for ( i=0; i<carrito.length; i++){
-    acumulador += "<div>"+ carrito[i].nombre+" "+"<p><button onclick='agregarCarrito(new Producto)'>Agregar</button></p></div>";
+    acumulador += carrito[i].nombre+ "||||| ";
 }
-console.log(acumulador);
+console.log("Sus productos son: "+acumulador);
 
-document.write(acumulador + "<p><button onclick='borrarDelCarrito(1)'>borrar</button></p>");
+//document.write(acumulador + "<p><button onclick='borrarDelCarrito(1)'>borrar</button></p>");

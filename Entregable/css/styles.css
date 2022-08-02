@@ -84,7 +84,7 @@ body {
   line-height: var(--bs-body-line-height);
   color: var(--bs-body-color);
   text-align: var(--bs-body-text-align);
-  background-color: var(--bs-body-bg);
+  background-color: rgb(247, 216, 170);
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
@@ -4513,7 +4513,7 @@ textarea.form-control-lg {
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
-  background-color: #fff;
+  background-color: whitesmoke;
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.25rem;
@@ -11290,4 +11290,9 @@ textarea.form-control-lg {
 text-align: center;
 text-decoration: underline;
 
+}
+.card-img-top{
+  width: auto;
+  height: 50mm;
+  size: 400px;
 }

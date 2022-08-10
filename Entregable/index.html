@@ -29,23 +29,25 @@
                     <!--<li class="nav-item"><a class="nav-link" href="#!">About</a></li>-->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
+                            data-bs-toggle="dropdown" aria-expanded="false">Productos</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#!">All Products</a></li>
+                           
                             <li>
-                                <hr class="dropdown-divider" />
+                                <a class="dropdown-item filtro-categoria" data-categoria="harina">Harinas</a>
                             </li>
-                            <li><a class="dropdown-item" href="#!">Popular Items</a></li>
-                            <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
+                            <li>
+                                <a class="dropdown-item filtro-categoria " data-categoria="grano">Granos Enteros</a>
+                            </li>
                         </ul>
                     </li>
                 </ul>
                 <form class="d-flex">
-                    <button class="btn btn-outline-dark" type="submit">
+                    <button class="btn btn-outline-dark" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="generarCardCarrito()">
                         <i class="bi-cart-fill me-1"></i>
-
                         <span id="carro" class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                        <span id="carroTotal" class="badge bg-dark text-white ms-1 rounded-pill"></span>
                     </button>
+                
                 </form>
             </div>
         </div>
@@ -62,23 +64,34 @@
         </div>
     </header>
     <!-- Section-->
-    <section class="py-5">
+    <section class="py-5" style="min-height: 100hv;">
         <div class="container px-4 px-lg-5 mt-5">
-            <h3 class="titulo">Harinas</h3>
+            <h3 class="titulo">Productos</h3>
             <div id="secction-card" class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
             </div>
         </div>
     </section>
-    <section class="py-5">
-        <div class="container px-4 px-lg-5 mt-5">
-            <h3 class="titulo">Granos Enteros</h3>
-            <div id ="secction-granos" class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+    
 
-                
-            </div>
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Tus Produtos</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+        <div id ="card-body"class="modal-body">
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary">Comprar</button>
+        </div>
+      </div>
+    </div>
+  </div>
     </section>
-
     <!-- Footer-->
     <footer class="py-5 bg-dark">
         <div class="container">

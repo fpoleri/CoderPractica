@@ -106,6 +106,7 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
   margin-bottom: 0.5rem;
   font-weight: 500;
   line-height: 1.2;
+  
 }
 
 h1, .h1 {
@@ -2357,6 +2358,7 @@ progress {
   padding: 0.5rem 1rem;
   font-size: 1.25rem;
   border-radius: 0.3rem;
+  
 }
 .form-control-lg::-webkit-file-upload-button {
   padding: 0.5rem 1rem;

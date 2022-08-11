@@ -8,7 +8,7 @@ class Producto {
         this.categoria = categoria;
     }
 }
-let productos = [
+const productos = [
     (new Producto(1, "harina de Centeno", "Integral", 169, "/img/harina_centeno.jpg", "harina")),
     (new Producto(2, "harina de Trigo blanca", "blanca/tipo 000", 114, "/img/trigo.jpg", "harina")),
     (new Producto(3, "harina de Soja", "no OGM", 132, "/img/harina-de-soja.jpg", "harina")),
@@ -28,19 +28,20 @@ document.getElementById("carroTotal").innerHTML = "$ " + sumaCarrito;
 function generarCardCarrito() {
     document.getElementById("card-body").innerHTML = " ";
     carrito.forEach((producto) => {
+       
         const idButton = `card-body${producto?.id}`;
-        document.getElementById("card-body").innerHTML += `
-    <div> 
-    <p id=${producto?.id}>
+        document.getElementById("card-body").innerHTML  += `
+        <div> 
+   <p id=${producto?.id}>
         -${producto?.id}
         -${producto?.nombre}
         -${producto?.descripcion}
         -${producto?.precio} $
-        <button id=${idButton} onclick="borrarDelCarrito(${producto?.id})" > eliminar </button>     
+        <button id=${idButton} onclick="borrarDelCarrito(${producto?.id})" > eliminar </button> 
    </p>
-</div>`
+   </div>`
+})
 
-    })
 }
 
 function mostraDatos() {
@@ -57,6 +58,7 @@ function mostraDatos() {
 }
 
 function agregarCarrito(nuevoProducto) {
+
     carrito.push(nuevoProducto);
     console.log("agregaste un nuevo producto!")
     console.log(carrito);
@@ -71,12 +73,23 @@ function borrarDelCarrito(idProducto) {
     eliminarPorducto(idProducto);
     console.log("eliminaste un producto!")
     mostraDatos();
-
+    
 }
 function eliminarPorducto(id) {
     const nodoAborrar = document.getElementById(id);
     let nodoPadre = nodoAborrar.parentNode;
     nodoPadre.removeChild(nodoAborrar);
+}
+function sweerAlert(){
+Swal.fire({
+        title: 'Agregaste un producto a tu carrito',
+        text: 'Desea seguir en esta pagina?',
+        width: 600, 
+        icon: 'success',
+        confirmButtonText: 'si',
+        background: 'rgb(70, 69, 69)',
+        color :'#e9ecef',
+      })
 }
 
 for (const nodoHTML of document.getElementsByClassName("filtro-categoria")) {
@@ -84,9 +97,8 @@ for (const nodoHTML of document.getElementsByClassName("filtro-categoria")) {
         const filtro = event.target.getAttribute("data-categoria");
         console.log(filtro);
         filtrarProductos(filtro);
-        
     }
- 
+
 }
 function filtrarProductos(tipoCategoria) {
     document.getElementById("secction-card").innerHTML = " ";
@@ -117,7 +129,7 @@ function filtrarProductos(tipoCategoria) {
     })
 
 
-
+    
 }
 
 productos.forEach((producto) => {
@@ -148,7 +160,11 @@ productos.forEach((producto) => {
 productos.forEach((producto) => {
     const idButton = `add-carrito${producto.id}`
     document.getElementById(idButton).addEventListener('click', () => {
+        
         agregarCarrito(producto);
+        sweerAlert();
+    
+
     })
 })
 

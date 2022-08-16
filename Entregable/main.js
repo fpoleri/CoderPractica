@@ -1,22 +1,23 @@
 class Producto {
-    constructor(id, nombre, descripcion, precio, imagen, categoria) {
+    constructor(id, nombre, descripcion, precio, imagen, categoria, cantidad) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
         this.imagen = imagen;
         this.categoria = categoria;
+        this.cantidad = 1;
     }
 }
 const productos = [
-    (new Producto(1, "harina de Centeno", "Integral", 169, "/img/harina_centeno.jpg", "harina")),
-    (new Producto(2, "harina de Trigo blanca", "blanca/tipo 000", 114, "/img/trigo.jpg", "harina")),
-    (new Producto(3, "harina de Soja", "no OGM", 132, "/img/harina-de-soja.jpg", "harina")),
-    (new Producto(4, "Salvado", "Salvado grueso", 46, "/img/salvados.jpg", "harina")),
-    (new Producto(5, "Trigo", "", 62, "/img/granoTrigo.jpg", "grano")),
-    (new Producto(6, "Centeno", "", 92, "/img/centeno.jpg", "grano")),
-    (new Producto(7, "Lino", "", 171, "/img/lino.jpg", "grano")),
-    (new Producto(8, "Soja", "no OGM", 87, "/img/soja.jpg", "grano"))
+    (new Producto(1, "harina de Centeno", "Integral", 169, "/img/harina_centeno.jpg", "harina", this.cantidad )),
+    (new Producto(2, "harina de Trigo blanca", "blanca/tipo 000", 114, "/img/trigo.jpg", "harina",this.cantidad )),
+    (new Producto(3, "harina de Soja", "no OGM", 132, "/img/harina-de-soja.jpg", "harina", this.cantidad)),
+    (new Producto(4, "Salvado", "Salvado grueso", 46, "/img/salvados.jpg", "harina", this.cantidad)),
+    (new Producto(5, "Trigo", "", 62, "/img/granoTrigo.jpg", "grano", this.cantidad)),
+    (new Producto(6, "Centeno", "", 92, "/img/centeno.jpg", "grano", this.cantidad)),
+    (new Producto(7, "Lino", "", 171, "/img/lino.jpg", "grano", this.cantidad)),
+    (new Producto(8, "Soja", "no OGM", 87, "/img/soja.jpg", "grano", this.cantidad))
 ];
 const carrito = JSON.parse(localStorage.getItem('totalCarrito')) ?? [];
 let Total = carrito.reduce((acumulador, producto) => acumulador + producto?.precio, 0);
@@ -30,17 +31,18 @@ function generarCardCarrito() {
     carrito.forEach((producto) => {
        
         const idButton = `card-body${producto?.id}`;
-        document.getElementById("card-body").innerHTML  += `
+        document.getElementById("card-body").innerHTML += `
         <div> 
    <p id=${producto?.id}>
         -${producto?.id}
         -${producto?.nombre}
         -${producto?.descripcion}
-        -${producto?.precio} $
+        - Precio: ${producto?.precio} $ 
+        - Cantidad de Productos: ${producto?.cantidad}
         <button id=${idButton} onclick="borrarDelCarrito(${producto?.id})" > eliminar </button> 
    </p>
    </div>`
-})
+    })
 
 }
 
@@ -58,12 +60,23 @@ function mostraDatos() {
 }
 
 function agregarCarrito(nuevoProducto) {
+    
+    let index = carrito.findIndex((e) => e?.nombre === nuevoProducto?.nombre);
+    if (index !== -1) {
+      
+       console.log(carrito[index]);
+       carrito[index].cantidad++
+      // me esta guardando la ultima suma y  me actualiza el valor de precio.
+       carrito[index].precio = carrito[index].precio + nuevoProducto.precio;
 
+       mostraDatos();
+    } else {
     carrito.push(nuevoProducto);
     console.log("agregaste un nuevo producto!")
     console.log(carrito);
     mostraDatos();
-
+    }
+ 
 }
 
 function borrarDelCarrito(idProducto) {
@@ -73,23 +86,35 @@ function borrarDelCarrito(idProducto) {
     eliminarPorducto(idProducto);
     console.log("eliminaste un producto!")
     mostraDatos();
-    
+
 }
 function eliminarPorducto(id) {
     const nodoAborrar = document.getElementById(id);
     let nodoPadre = nodoAborrar.parentNode;
     nodoPadre.removeChild(nodoAborrar);
 }
-function sweerAlert(){
-Swal.fire({
+
+function sweetAlert() {
+    Swal.fire({
         title: 'Agregaste un producto a tu carrito',
-        text: 'Desea seguir en esta pagina?',
-        width: 600, 
+        width: 600,
         icon: 'success',
-        confirmButtonText: 'si',
+        confirmButtonText: 'continuar',
         background: 'rgb(70, 69, 69)',
-        color :'#e9ecef',
-      })
+        color: '#e9ecef',
+    })
+}
+
+function sweetAlert2() {
+    Swal.fire({
+        title: 'Gracias por tu compra',
+        text: "vuelve pronto",
+        width: 600,
+        icon: 'info',
+
+        background: 'rgb(70, 69, 69)',
+        color: '#e9ecef',
+    })
 }
 
 for (const nodoHTML of document.getElementsByClassName("filtro-categoria")) {
@@ -129,7 +154,7 @@ function filtrarProductos(tipoCategoria) {
     })
 
 
-    
+
 }
 
 productos.forEach((producto) => {
@@ -160,11 +185,27 @@ productos.forEach((producto) => {
 productos.forEach((producto) => {
     const idButton = `add-carrito${producto.id}`
     document.getElementById(idButton).addEventListener('click', () => {
-        
+
         agregarCarrito(producto);
-        sweerAlert();
-    
+        sweetAlert();
+
 
     })
 })
+
+
+
+function botonCompra() {
+    setTimeout(() => {
+        setTimeout(() => {
+            sweetAlert2()
+            document.getElementById('compra-boton').innerHTML = " ";
+        }, 3000)
+        document.getElementById('compra-boton').innerHTML = `
+        <div class="spinner-border" role="status">
+        <span class="sr-only"></span>
+        </div> `
+    }, 0000)
+}
+
 

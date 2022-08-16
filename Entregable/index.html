@@ -1,18 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>Minhoca-Online</title>
-    <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="/assets/icons8-suelo-48.png" />
-    <!-- Bootstrap icons-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="css/styles.css" rel="stylesheet" />
+    
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Minhoca-Online</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="/assets/icons8-suelo-48.png" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+        
+        <!-- las librerias siempre tienen que estar cargadas antes que nuestro codigo-->
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js" defer></script>
+        <script src="/main.js" defer></script>
 </head>
 
 <body>
@@ -88,7 +94,7 @@
             
           <span id="muestraTotalCarro" class="badge bg-dark text-white">0</span>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn btn-primary">Comprar</button>
+          <button id="compra-boton" type="button" class="btn btn-primary"  onclick="botonCompra()">Comprar</button>
         </div>
       </div>
     </div>
@@ -104,9 +110,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
    
-    <!-- las librerias siempre tienen que estar cargadas antes que nuestro codigo-->
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="/main.js"></script>
 
 </body>
 

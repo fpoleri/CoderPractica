@@ -10,8 +10,8 @@ class Producto {
     }
 }
 const productos = [
-    (new Producto(1, "harina de Centeno", "Integral", 169, "/img/harina_centeno.jpg", "harina", this.cantidad )),
-    (new Producto(2, "harina de Trigo blanca", "blanca/tipo 000", 114, "/img/trigo.jpg", "harina",this.cantidad )),
+    (new Producto(1, "harina de Centeno", "Integral", 169, "/img/harina_centeno.jpg", "harina", this.cantidad)),
+    (new Producto(2, "harina de Trigo blanca", "blanca/tipo 000", 114, "/img/trigo.jpg", "harina", this.cantidad)),
     (new Producto(3, "harina de Soja", "no OGM", 132, "/img/harina-de-soja.jpg", "harina", this.cantidad)),
     (new Producto(4, "Salvado", "Salvado grueso", 46, "/img/salvados.jpg", "harina", this.cantidad)),
     (new Producto(5, "Trigo", "", 62, "/img/granoTrigo.jpg", "grano", this.cantidad)),
@@ -29,7 +29,7 @@ document.getElementById("carroTotal").innerHTML = "$ " + sumaCarrito;
 function generarCardCarrito() {
     document.getElementById("card-body").innerHTML = " ";
     carrito.forEach((producto) => {
-       
+
         const idButton = `card-body${producto?.id}`;
         document.getElementById("card-body").innerHTML += `
         <div> 
@@ -60,23 +60,23 @@ function mostraDatos() {
 }
 
 function agregarCarrito(nuevoProducto) {
-    
-    let index = carrito.findIndex((e) => e?.nombre === nuevoProducto?.nombre);
-    if (index !== -1) {
-      
-       console.log(carrito[index]);
-       carrito[index].cantidad++
-      // me esta guardando la ultima suma y  me actualiza el valor de precio.
-       carrito[index].precio = carrito[index].precio + nuevoProducto.precio;
 
-       mostraDatos();
+    let index = carrito.findIndex((element) => element?.nombre === nuevoProducto?.nombre);
+    if (index !== -1) {
+        let acumulador = 0;
+        console.log(carrito[index]);
+        carrito[index].cantidad++
+        // me esta guardando la ultima suma y  me actualiza el valor de precio.
+
+        carrito[index].precio += carrito[index].precio;
+        mostraDatos();
     } else {
-    carrito.push(nuevoProducto);
-    console.log("agregaste un nuevo producto!")
-    console.log(carrito);
-    mostraDatos();
+        carrito.push(nuevoProducto);
+        console.log("agregaste un nuevo producto!")
+        console.log(carrito);
+        mostraDatos();
     }
- 
+
 }
 
 function borrarDelCarrito(idProducto) {
@@ -116,7 +116,34 @@ function sweetAlert2() {
         color: '#e9ecef',
     })
 }
+const irPagar = () => {
+    sweetAlert2();
+    const carritoMP = carrito.map((element) => ({
+        title: element.nombre,
+        description: "",
+        picture_url: "",
+        id: element.id,
+        category: element.categoria,
+        quantity: element.cantidad,
+        currency_id: "ARS",
+        unit_price: element.precio + (element.precio * 0.21)
+    }));
 
+    fetch("https://api.mercadopago.com/checkout/preferences", {
+        method: "POST",
+        headers: {
+            Authorization:
+                "Bearer TEST-6749401201952774-052316-331a4b286472f40790ff1702e7a29e62-292785847",
+        },
+        body: JSON.stringify({
+            items: carritoMP,
+        }),
+    })
+        .then((resp) => resp.json())
+        .then((data) => {
+            window.open(data.init_point, "_blank");
+        });
+};
 for (const nodoHTML of document.getElementsByClassName("filtro-categoria")) {
     nodoHTML.onclick = (event) => {
         const filtro = event.target.getAttribute("data-categoria");
@@ -152,9 +179,6 @@ function filtrarProductos(tipoCategoria) {
     </div>
     </div>`
     })
-
-
-
 }
 
 productos.forEach((producto) => {
@@ -182,6 +206,7 @@ productos.forEach((producto) => {
     </div>`
 })
 
+
 productos.forEach((producto) => {
     const idButton = `add-carrito${producto.id}`
     document.getElementById(idButton).addEventListener('click', () => {
@@ -192,20 +217,5 @@ productos.forEach((producto) => {
 
     })
 })
-
-
-
-function botonCompra() {
-    setTimeout(() => {
-        setTimeout(() => {
-            sweetAlert2()
-            document.getElementById('compra-boton').innerHTML = " ";
-        }, 3000)
-        document.getElementById('compra-boton').innerHTML = `
-        <div class="spinner-border" role="status">
-        <span class="sr-only"></span>
-        </div> `
-    }, 0000)
-}
 
 

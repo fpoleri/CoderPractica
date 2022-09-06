@@ -4488,6 +4488,7 @@ textarea.form-control-lg {
 }
 .navbar-dark .navbar-nav .nav-link.disabled {
   color: rgba(255, 255, 255, 0.25);
+ 
 }
 .navbar-dark .navbar-nav .show > .nav-link,
 .navbar-dark .navbar-nav .nav-link.active {
@@ -4495,7 +4496,7 @@ textarea.form-control-lg {
 }
 .navbar-dark .navbar-toggler {
   color: rgba(255, 255, 255, 0.55);
-  border-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(157, 30, 30, 0.142);
 }
 .navbar-dark .navbar-toggler-icon {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
@@ -5515,6 +5516,7 @@ textarea.form-control-lg {
   height: calc(100% - 1rem);
 }
 .modal-dialog-scrollable .modal-content {
+  
   max-height: 100%;
   overflow: hidden;
 }
@@ -11297,4 +11299,93 @@ text-decoration: underline;
   width: auto;
   height: 50mm;
   size: 400px;
+}
+
+.botonEliminar {
+  background-color: #ece1be;
+  border: 0;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  font-size: 14px;
+  justify-items: right;
+}
+
+.modal-dialog{
+  background-color: var(--bs-gray-800);
+  font-family: 'poppins', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal-body{
+  background-color: burlywood;
+}
+.btn-primary{
+  background-color: burlywood;
+  border: 0;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  font-size: 14px;
+  color:#000;
+  justify-items: right;
+}
+.btn-secondary {
+  background-color: burlywood;
+  border: 0;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  font-size: 14px;
+  color:#000;
+  justify-items: right;
+}
+#muestraTotalCarro{
+  background-color: burlywood;
+  border: 0;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  font-size: 14px;
+  color:#000;
+  margin-left: 0px;
+  margin-right: 150px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+
+}
+.card{
+  background-color: lightgoldenrodyellow;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  border: 0;
+  border-radius: 5px;
+  font-family: 'Poppins', 'sans-serif';
+  font-size: 18px;
+  font-style: oblique;
+}
+
+.btn-outline-dark{
+  background-color: burlywood;
+  border: 0;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  font-size: 14px;
+  color:#000;
+  justify-items: right;
+}
+.titulo{
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 45px;
+  font-family: fantasy;
+  font-size:xx-large;
+  text-decoration: none;
+}
+.volver{
+  background-color: burlywood;
+  border: 0;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  font-size: 14px;
+  color:#000;
+  height:50px; 
+  width:70px;
+  position: absolute; 
 }

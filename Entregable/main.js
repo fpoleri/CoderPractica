@@ -34,17 +34,18 @@ function generarCardCarrito() {
         document.getElementById("card-body").innerHTML += `
         <div> 
    <p id=${producto?.id}>
-        -${producto?.id}
+        -${producto.id}
         -${producto?.nombre}
         -${producto?.descripcion}
         - Precio: ${producto?.precio} $ 
         - Cantidad de Productos: ${producto?.cantidad}
-        <button id=${idButton} onclick="borrarDelCarrito(${producto?.id})" > eliminar </button> 
+        <button id=${idButton} class="botonEliminar" onclick="borrarDelCarrito(${producto?.id})" > eliminar </button> 
    </p>
    </div>`
     })
 
 }
+
 
 function mostraDatos() {
     localStorage.setItem('totalCarrito', JSON.stringify(carrito))
@@ -60,24 +61,23 @@ function mostraDatos() {
 }
 
 function agregarCarrito(nuevoProducto) {
-
+    
     let index = carrito.findIndex((element) => element?.nombre === nuevoProducto?.nombre);
     if (index !== -1) {
-        let acumulador = 0;
+        
         console.log(carrito[index]);
         carrito[index].cantidad++
-        // me esta guardando la ultima suma y  me actualiza el valor de precio.
-
-        carrito[index].precio += carrito[index].precio;
-        mostraDatos();
+        carrito[index].precio += carrito[index].precio
+       // mostraDatos();
     } else {
         carrito.push(nuevoProducto);
         console.log("agregaste un nuevo producto!")
         console.log(carrito);
         mostraDatos();
     }
-
+    
 }
+
 
 function borrarDelCarrito(idProducto) {
     const index = carrito.findIndex((producto) => producto?.id === idProducto);
@@ -115,6 +115,14 @@ function sweetAlert2() {
         background: 'rgb(70, 69, 69)',
         color: '#e9ecef',
     })
+}
+function acercaMinhoca(){
+    document.getElementById("textoMinhoca").innerHTML = `
+    
+    <a href="pagina.htm" target="_blank">link</a>
+    
+    `
+
 }
 const irPagar = () => {
     sweetAlert2();
@@ -172,11 +180,6 @@ function filtrarProductos(tipoCategoria) {
     ${"$" + producto.precio}
     </div>
     </div>
-    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-    <div class="text-center">
-    <a class="btn btn-outline-dark mt-auto" id="${idButton}">Agregar al carrito</a>
-    </div>
-    </div>
     </div>`
     })
 }
@@ -184,7 +187,7 @@ function filtrarProductos(tipoCategoria) {
 productos.forEach((producto) => {
     const idButton = `add-carrito${producto.id}`
     document.getElementById("secction-card").innerHTML += ` <div class="col mb-5">
-    <div class="card h-100">
+    <div class="card">
     <!-- Product image-->
     <img class="card-img-top" src="${producto.imagen}"size= "400x300" alt="..." />
     <!-- Product details-->
